@@ -15,3 +15,43 @@ ALB	ALB             SG ID + Subnet IDs
 ALB_TG	            VPC ID
 ALB_TG_ASSOCIATION	ALB_TG ARN + EC2 ID
 ALB_LISTENER	    ALB ARN + ALB_TG ARN
+
+Resource	    Simple purpose
+ALB SG	        Who can access ALB?
+ALB	            Who distributes traffic?
+ALB TG	        Where should traffic go?
+ALB TGA	        Which EC2 instances belong to TG?
+ALB Listener	On which port to listen and where to forward?
+
+User / Internet
+      |
+      v
+ALB Security Group(Allows incoming traffic - Port 80/443)
+      |
+      v
+Application Load Balancer (ALB)(Receives and distributes traffic)
+      |
+      v
+ALB Listener(Listens on Port 80/443)
+      |
+      v
+ALB Target Group(Defines backend targets)
+      |
+      v
+Target Group Attachment(Registers EC2 instances)
+      |
+      +------------------+
+      |                  |
+      v                  v
+    EC2-1              EC2-2
+  (Backend)          (Backend)
+
+ALB SG  -> Controls who can access ALB.
+
+ALB -> Receives incoming traffic.
+
+ALB TG  -> Defines backend targets and health checks.
+
+ALB TGA -> Registers EC2 instances with Target Group.
+
+ALB Listener    -> Listens on a port and decides what action to perform.
