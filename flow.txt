@@ -1,0 +1,17 @@
+VPC
+ ├── ALB_SG
+ ├── ALB_TG
+ │     └── ALB_TG_ASSOCIATION (EC2)
+ │
+ └── ALB
+       ├── ALB_SG
+       └── ALB_LISTENER
+             └── ALB_TG
+
+
+Resource	        Required references
+ALB_SG	            VPC ID
+ALB	ALB             SG ID + Subnet IDs
+ALB_TG	            VPC ID
+ALB_TG_ASSOCIATION	ALB_TG ARN + EC2 ID
+ALB_LISTENER	    ALB ARN + ALB_TG ARN
